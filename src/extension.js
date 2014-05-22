@@ -1106,7 +1106,7 @@ const WEATHER_DEBUG_EXTENSION = 'debug-extension';			// Weather extension settin
 			if(!a)
 			temp = this.info.get_value_temp(unit)[1];
 
-		temp = parseFloat(Math.round(temp*10)/10).toLocaleString();
+		temp = parseInt(Math.round(temp)).toLocaleString();
 
 			switch(unit)
 			{
