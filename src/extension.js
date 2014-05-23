@@ -630,13 +630,7 @@ const WEATHER_DEBUG_EXTENSION = 'debug-extension';			// Weather extension settin
 		item = new PopupMenu.PopupSeparatorMenuItem();							this.status("UI.forecast added to menu");
 		this.menu.addMenuItem(item);									this.status("Added separator");
 		
-		this.menu.box.add(this.UI.attribution);								this.status("UI.attribution added to menu");
-		this.UI.attribution.hide();
-
-		item = new PopupMenu.PopupSeparatorMenuItem();
-		this.menu.addMenuItem(item);									this.status("Added separator");
-
-		this.UI.locationSelector = new PopupMenu.PopupSubMenuMenuItem(_("Locations"));			this.status("UI.locationSelector created");
+        this.UI.locationSelector = new PopupMenu.PopupSubMenuMenuItem(_("Locations"));			this.status("UI.locationSelector created");
 		this.menu.addMenuItem(this.UI.locationSelector);						this.status("UI.locationSelector added to menu");
 		this.rebuildLocationSelectorItem();								this.status("Location selector builded");
 
