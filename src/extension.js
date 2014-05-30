@@ -388,7 +388,7 @@ const WEATHER_DEBUG_EXTENSION = 'debug-extension';			// Weather extension settin
 
 			if(fuc || presUnitVar)
 			{
-			this.UI.currentPressure.text = this.info.get_pressure();				this.status("Pressure information "+di_up);
+			this.UI.currentPressure.text = this.pressure_string();				this.status("Pressure information "+di_up);
 			}
 
 			if(textInPanelVar || commentInPanelVar)
@@ -1187,6 +1187,47 @@ const WEATHER_DEBUG_EXTENSION = 'debug-extension';			// Weather extension settin
 			}
 		return 0;
 		},
+
+        pressure_string : function(a)
+        {
+        let unit = this.pressure_units;
+        let pres = a;
+            if(!a)
+            pres = this.info.get_value_pressure(unit)[1];
+
+        switch(unit)
+			{
+				case GWeather.PressureUnit.INCH_HG :
+				return _("%s inHg").replace("%s", parseFloat(pres.toFixed(1)).toLocaleString());
+				break;
+
+				case GWeather.PressureUnit.MM_HG:
+				return _("%s mmHg").replace("%s", parseFloat(pres.toFixed(0)).toLocaleString());
+				break;
+
+				case GWeather.PressureUnit.KPA :
+				return _("%s kPa").replace("%s", parseFloat(pres.toFixed(1)).toLocaleString());
+				break;
+
+                case GWeather.PressureUnit.HPA :
+				return _("%s hPa").replace("%s", parseFloat(pres.toFixed(0)).toLocaleString());
+				break;
+
+                case GWeather.PressureUnit.MB :
+				return _("%s mb").replace("%s", parseFloat(pres.toFixed(0)).toLocaleString());
+				break;
+
+                case GWeather.PressureUnit.ATM :
+				return _("%s atm").replace("%s", parseFloat(pres.toFixed(3)).toLocaleString());
+				break;
+
+				case GWeather.PressureUnit.INVALID :
+				case GWeather.PressureUnit.DEFAULT :
+				default :
+				return _("Unknown");
+			}
+        return 0;
+        },
 
 		loadConfig : function()
 		{
