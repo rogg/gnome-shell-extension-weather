@@ -383,7 +383,7 @@ const WEATHER_DEBUG_EXTENSION = 'debug-extension';			// Weather extension settin
 
 			if(fuc || distUnitVar)
 			{
-			this.UI.currentVisibility.text = this.info.get_visibility();				this.status("Distance information "+di_up);
+			this.UI.currentVisibility.text = this.distance_string();				this.status("Distance information "+di_up);
 			}
 
 			if(fuc || presUnitVar)
@@ -1228,6 +1228,37 @@ const WEATHER_DEBUG_EXTENSION = 'debug-extension';			// Weather extension settin
 			}
         return 0;
         },
+
+        distance_string : function(a)
+		{
+		let unit = this.distance_units;
+		let dist = a;
+			if(!a)
+			dist = this.info.get_value_visibility(unit)[1];
+
+		dist = parseInt(Math.round(dist)).toLocaleString();
+
+			switch(unit)
+			{
+				case GWeather.DistanceUnit.METERS :
+				return _("%s m").replace("%s", dist);
+				break;
+
+				case GWeather.DistanceUnit.KM :
+				return _("%s km").replace("%s", dist);
+				break;
+
+				case GWeather.DistanceUnit.MILES :
+				return _("%s miles").replace("%s", dist);
+				break;
+
+				case GWeather.TemperatureUnit.INVALID :
+				case GWeather.TemperatureUnit.DEFAULT :
+				default :
+				return _("Unknown");
+			}
+		return 0;
+		}, 
 
 		loadConfig : function()
 		{
